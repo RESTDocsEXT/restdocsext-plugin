@@ -1,0 +1,8 @@
+
+dependencies {
+    compile project(':restdocsext-model')
+    
+    compile 'org.jsoup:jsoup'
+    compile 'commons-io:commons-io'
+    optional 'junit:junit'
+}

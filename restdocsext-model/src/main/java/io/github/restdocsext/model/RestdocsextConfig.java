@@ -114,6 +114,11 @@ public class RestdocsextConfig {
             return this;
         }
         
+        public UiConfig setPages(List<String> pages) {
+            this.pages = pages;
+            return this;
+        }
+        
         public List<String> getPages() {
             return this.pages;
         }
