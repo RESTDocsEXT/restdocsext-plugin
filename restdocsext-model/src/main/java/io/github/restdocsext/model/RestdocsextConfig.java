@@ -17,7 +17,7 @@ public class RestdocsextConfig {
     
     private String baseUri;
     private List<RestdocsextOperationCollection> collections;
-    private final UiConfig uiConfig = new UiConfig(this);
+    private UiConfig uiConfig = new UiConfig(this);
 
     public String getBaseUri() {
         return this.baseUri;
@@ -44,6 +44,11 @@ public class RestdocsextConfig {
         return this.uiConfig;
     }
     
+    @JsonProperty("config")
+    public void setUiConfig(UiConfig uiConfig) {
+        this.uiConfig = uiConfig;
+    }
+    
     public UiConfig ui() {
         return this.uiConfig;
     }
@@ -64,7 +69,9 @@ public class RestdocsextConfig {
         private String organizationLink;
         private List<String> pages;
         
-        private final RestdocsextConfig parent;
+        private RestdocsextConfig parent;
+        
+        public UiConfig() {}
         
         UiConfig(RestdocsextConfig parent) {
             this.parent = parent;

@@ -39,7 +39,7 @@ public class GenerateRestdocsextConfigTask implements RestdocsextPluginTask {
 
     @Override
     public void handle(RestdocsextPluginContext context) throws RestdocsextPluginException {
-        context.getLogger().info("Starting to generate Playground configuration file.");
+        context.getLogger().info("Starting to generate RESTDocsEXT configuration file.");
         RestdocsextConfig config = generate(context.getSnippetsDir(),context.getLogger())
                 .setBaseUri(context.getBaseUri())
                 .ui()
@@ -68,7 +68,7 @@ public class GenerateRestdocsextConfigTask implements RestdocsextPluginTask {
     }
 
     /*
-     * Generate the {@link PlaygroundConfig} instance from a directory containing
+     * Generate the {@link RESTDocsextConfig} instance from a directory containing
      * playground-api.adoc files.
      *
      * @param sourceDirectory the directory of the generate playground-api.adoc files.
@@ -87,7 +87,7 @@ public class GenerateRestdocsextConfigTask implements RestdocsextPluginTask {
     }
 
     /*
-     * Maps {@code PLaygroundApis} to the collection. We want the JSON result
+     * Maps {@code RestdocsextOperations} to the collection. We want the JSON result
      * to have the name of the API group/collection as a key, with all the collection
      * members in a list as the value.
      */
@@ -108,7 +108,7 @@ public class GenerateRestdocsextConfigTask implements RestdocsextPluginTask {
     }
 
     /*
-     * Create a list of {@code PlaygroundApis} from all the {@code playground-api.adoc} files
+     * Create a list of {@code RestdocsextOperation} from all the {@code restdocsext-io.json} files
      */
     private static List<RestdocsextOperation> getAllApis(File inDir, PluginLogger log) {
         List<RestdocsextOperation> apis = new ArrayList<>();

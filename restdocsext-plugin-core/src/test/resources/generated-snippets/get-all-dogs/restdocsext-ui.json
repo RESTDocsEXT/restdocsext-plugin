@@ -1,0 +1,11 @@
+{
+  "collection" : "Dogs",
+  "path" : "/dogs?limit=3",
+  "httpMethod" : "GET",
+  "requestParameters" : {
+    "limit" : "limit the number of results"
+  },
+  "requestHeaders" : {
+    "X-Custom-Header" : "some random custom header"
+  }
+}
