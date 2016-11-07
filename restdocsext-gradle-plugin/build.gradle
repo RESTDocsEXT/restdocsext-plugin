@@ -14,10 +14,11 @@ repositories {
 
 dependencies {
    compile gradleApi()
-   compile localGroovy()
    compile project(':restdocsext-plugin-core')
-    
+
    compile "org.asciidoctor:asciidoctor-gradle-plugin:$asciidoctorPluginVersion"
    compile "org.asciidoctor:asciidoctorj:$asciidoctorjVersion"
-   compile "org.asciidoctor:asciidoctorj-groovy-dsl:$groovyDslVersion"
+   compile ("org.asciidoctor:asciidoctorj-groovy-dsl:$groovyDslVersion") {
+       exclude group: 'org.codehaus.groovy', module: 'groovy-all'
+   }
 }
