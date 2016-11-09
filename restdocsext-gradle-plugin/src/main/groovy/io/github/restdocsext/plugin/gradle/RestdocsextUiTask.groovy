@@ -23,7 +23,7 @@ class RestdocsextUiTask extends DefaultTask {
 
     @TaskAction
     void process() {
-        def playground = getPlayground()
+        def restdocsext = getRestdocsext()
         def asciidoctor = restdocsext.getAsciidoctor()
         def pluginContext = RestdocsextPluginContext.builder()
                 .logger(new GradlePluginLogger(project.logger))
