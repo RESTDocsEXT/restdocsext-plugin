@@ -29,7 +29,7 @@ class RestdocsextUiTask extends DefaultTask {
                 .logger(new GradlePluginLogger(project.logger))
                 .baseUri(restdocsext.getBaseUri())
                 .uiOutputDir(restdocsext.getUiOutputDir())
-                .sippetsDir(restdocsext.getUiSnippetsDir())
+                .snippetsDir(restdocsext.getSnippetsDir())
                 .asciidoctorSourcesDir(asciidoctor.getSourcesDir())
                 .asciidoctorOutputDir(asciidoctor.getOutputDir())
                 .asciidoctorAttrs(asciidoctor.getAttributes())

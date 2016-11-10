@@ -15,10 +15,10 @@ class RestdocsextPlugin implements Plugin<Project> {
     void apply(Project project) {
         project.extensions.create(RESTDOCSEXT, RestdocsextExtension, project)
 
-        addPlaygroundTask(project)
+        addRestdocsextTask(project)
     }
 
-    def addPlaygroundTask(Project project) {
+    def addRestdocsextTask(Project project) {
         project.afterEvaluate {
             project.tasks.withType(RestdocsextUiTask).whenTaskAdded { task ->
                 def extension = project.extensions.findByName(RESTDOCSEXT)
