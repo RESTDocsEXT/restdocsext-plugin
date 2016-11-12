@@ -18,31 +18,19 @@ import io.github.restdocsext.plugin.task.RestdocsextPluginTask;
  */
 public class RestdocsextPluginProcessor {
     
-    private final RestdocsextPluginContext context;
-    private final AsciidoctorPluginTask asciidoctorTask;
-    
-    /**
-     * @param context the plugin context
-     * @param task the Asciidoctor plugin task
-     */
-    public RestdocsextPluginProcessor(RestdocsextPluginContext context, AsciidoctorPluginTask task) {
-        Objects.requireNonNull(context, "Playground context must not be null");
-        Objects.requireNonNull(task, "Asciidoctor task must not be null");
-        this.context = context;
-        this.asciidoctorTask = task;
-    }
-    
     /**
      * Process all the plugin tasks.
      */
-    public void process() {
+    public void process(RestdocsextPluginContext context, AsciidoctorPluginTask asciidoctorTask) {
+        Objects.requireNonNull(context, "Playground context must not be null");
+        Objects.requireNonNull(asciidoctorTask, "Asciidoctor task must not be null");
         List<RestdocsextPluginTask> tasks = Arrays.asList(
-                this.asciidoctorTask,
+                asciidoctorTask,
                 new ResolveRestdocsextUiTask(),
                 new DocumentModifyingTask(), 
                 new GenerateRestdocsextConfigTask());
         for (RestdocsextPluginTask task: tasks) {
-            task.handle(this.context);
+            task.handle(context);
         }
     }
 }
