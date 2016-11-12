@@ -21,6 +21,8 @@ class RestdocsextUiTask extends DefaultTask {
     @Nested
     RestdocsextExtension restdocsext
 
+    RestdocsextPluginProcessor processor = new RestdocsextPluginProcessor()
+
     @TaskAction
     void process() {
         def restdocsext = getRestdocsext()
@@ -30,13 +32,13 @@ class RestdocsextUiTask extends DefaultTask {
                 .baseUri(restdocsext.getBaseUri())
                 .uiOutputDir(restdocsext.getUiOutputDir())
                 .snippetsDir(restdocsext.getSnippetsDir())
-                .asciidoctorSourcesDir(asciidoctor.getSourcesDir())
+                .asciidoctorSourceDir(asciidoctor.getSourceDir())
                 .asciidoctorOutputDir(asciidoctor.getOutputDir())
                 .asciidoctorAttrs(asciidoctor.getAttributes())
                 .build()
         def asciidoctorTask = new GradlePluginAsciidoctorTask(project)        
         
-        new RestdocsextPluginProcessor(pluginContext, asciidoctorTask).process()
+        this.processor.process(pluginContext, asciidoctorTask)
     }
 }
 
