@@ -63,6 +63,8 @@ public class DocumentModifyingTask implements RestdocsextPluginTask {
 
     private static String getPathWithoutBase(File asciidoctorOutputDir, File fileToSave) {
         String basePath = asciidoctorOutputDir.getAbsolutePath();
+        // take care of asciidoctor creating html5 directory
+        basePath = basePath.endsWith("/") ? basePath + "html5" : basePath + "/html5";
         String fullPathPath = fileToSave.getAbsolutePath();
         String baseRemoved = fullPathPath.substring(basePath.length());
         return baseRemoved.startsWith("/") ? baseRemoved.substring(1) : baseRemoved;
