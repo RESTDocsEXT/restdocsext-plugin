@@ -17,12 +17,11 @@ import io.github.restdocsext.model.RestdocsextOperation;
 import io.github.restdocsext.model.RestdocsextOperationCollection;
 import io.github.restdocsext.plugin.RestdocsextPluginContext;
 
-import static io.github.restdocsext.plugin.RestdocsextPluginContext.ASSETS_SUBDIR;
-import static org.hamcrest.CoreMatchers.is;
+import static io.github.restdocsext.plugin.RestdocsextPluginContext.ASSETS_CONFIGDIR;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertThat;
+
 
 /**
  *
@@ -67,7 +66,7 @@ public class GenerateRestdocsextConfigTaskTest {
     
     @Test
     public void should_produce_correct_JSON_output() throws Exception {
-        File result = new File(this.temp + File.separator + ASSETS_SUBDIR, RESTDOCSEXT_CONFIG_FILENAME);
+        File result = new File(this.temp + File.separator + ASSETS_CONFIGDIR, RESTDOCSEXT_CONFIG_FILENAME);
         RestdocsextConfig config = mapper.readValue(result, RestdocsextConfig.class);
         assertEquals("http://localhost", config.getBaseUri());
         

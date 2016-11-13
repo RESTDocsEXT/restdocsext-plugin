@@ -49,12 +49,12 @@ public class GenerateRestdocsextConfigTask implements RestdocsextPluginTask {
                 .organizationLink(context.getOrganizationLink())
                 .parent();
 
-        File assetsOutputDir = context.getAssetsOutputDir();
+        File assetsOutputDir = context.getAssetsConfigDir();
         if (!assetsOutputDir.exists() || !assetsOutputDir.isDirectory()) {
             throw new RestdocsextPluginException(assetsOutputDir
                     + " does not exist or is not a directory");
         }
-        File configFile = new File(context.getAssetsOutputDir(), RESTDOCSEXT_CONFIG_FILENAME);
+        File configFile = new File(context.getAssetsConfigDir(), RESTDOCSEXT_CONFIG_FILENAME);
         serializeConfig(config, configFile);
         context.getLogger().info("Finished generating " + configFile);
     }

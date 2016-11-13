@@ -16,7 +16,8 @@ public class RestdocsextPluginContext {
     /**
      * The subdirectory of the UI output directory that has the assets
      */
-    public static final String ASSETS_SUBDIR = "assets/config";
+    public static final String ASSETS_DOCSDIR = "assets/docs";
+    public static final String ASSETS_CONFIGDIR = "assets/config";
 
     /**
      * The source URL for the UI disttribution
@@ -176,8 +177,12 @@ public class RestdocsextPluginContext {
         return this.asciidoctorSourceDir;
     }
 
-    public File getAssetsOutputDir() {
-        return new File(this.uiOutputDir, ASSETS_SUBDIR);
+    public File getAssetsDocsDir() {
+        return new File(this.uiOutputDir, ASSETS_DOCSDIR);
+    }
+
+    public File getAssetsConfigDir() {
+        return new File(this.uiOutputDir, ASSETS_CONFIGDIR);
     }
 
     public Map<String, Object> getAsciidoctorAttrs() {

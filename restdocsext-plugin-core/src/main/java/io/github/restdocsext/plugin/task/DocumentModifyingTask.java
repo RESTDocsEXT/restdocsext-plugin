@@ -7,6 +7,7 @@ import java.util.Set;
 import java.util.SortedSet;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -31,13 +32,12 @@ public class DocumentModifyingTask implements RestdocsextPluginTask {
             throw new RestdocsextPluginException(asciidoctorOutputDir 
                     + " does not exist or is not a directory");
         }
-        File[] files = asciidoctorOutputDir.listFiles();
 
-        if (files.length == 0) {
+        if (asciidoctorOutputDir.listFiles().length == 0) {
             context.getLogger().warn("The directory " + asciidoctorOutputDir + " is empty");
             return;
         }
-        for (File file : files) {
+        for (File file : FileUtils.listFiles(asciidoctorOutputDir, TrueFileFilter.INSTANCE, TrueFileFilter.INSTANCE)) {
             processFile(file, modifiers, context);
         }
         context.getLogger().info("Finished modifying Asciidoc document(s)");
@@ -49,14 +49,22 @@ public class DocumentModifyingTask implements RestdocsextPluginTask {
             for (DocumentModifier modifier : modifiers) {
                 modifier.modify(document);
             }
-            File docFile = new File(context.getAssetsOutputDir(), file.getName());
+            String pathWithoutBase = getPathWithoutBase(context.getAsciidoctorOutputDir(), file);
+            File docFile = new File(context.getAssetsDocsDir(), pathWithoutBase);
             FileUtils.writeStringToFile(docFile, document.body().html(), "utf-8");
-            // add doc page to list of pages. These pages will be put into the PlaygroundConfig
+            // add doc page to list of pages. These pages will be put into the configuration file
             // from the JSON generator task.
             context.addDocPage(file.getName());
         } catch (IOException ex) {
             context.getLogger().error(ex.getMessage());
             throw new RestdocsextPluginException("failed to modify asciidoctor generated documents.", ex);
         }
+    }
+
+    private static String getPathWithoutBase(File asciidoctorOutputDir, File fileToSave) {
+        String basePath = asciidoctorOutputDir.getAbsolutePath();
+        String fullPathPath = fileToSave.getAbsolutePath();
+        String baseRemoved = fullPathPath.substring(basePath.length());
+        return baseRemoved.startsWith("/") ? baseRemoved.substring(1) : baseRemoved;
     }
 }
