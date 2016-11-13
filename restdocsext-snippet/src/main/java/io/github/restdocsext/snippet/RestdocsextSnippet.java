@@ -195,7 +195,7 @@ public class RestdocsextSnippet implements Snippet {
     }
     
     /**
-     * Generate the {@link PlaygroundApi} from the {@link Operation}.
+     * Generate the {@link RestdocsextOperation} from the {@link Operation}.
      * 
      * @param operation the operation
      * @return the Playground API model

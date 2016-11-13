@@ -113,9 +113,9 @@ public class GenerateRestdocsextConfigTask implements RestdocsextPluginTask {
     private static List<RestdocsextOperation> getAllApis(File inDir, PluginLogger log) {
         List<RestdocsextOperation> apis = new ArrayList<>();
         List<File> playgroundFiles = new ArrayList<>();
-        getPlaygroundFiles(playgroundFiles, inDir);
+        getRestdocsextSnippetFiles(playgroundFiles, inDir);
         if (playgroundFiles.isEmpty()) {
-            log.warn("There are no playground-api.adoc files in " + inDir);
+            log.warn("There are no restdocsext-ui.json files in " + inDir);
         }
         for (File playgroundFile : playgroundFiles) {
             RestdocsextOperation api = deserializeApi(playgroundFile);
@@ -127,10 +127,10 @@ public class GenerateRestdocsextConfigTask implements RestdocsextPluginTask {
     /*
      * Recursively get all the restdocsext-ui.json files.
      */
-    private static void getPlaygroundFiles(List<File> list, File file) {
+    private static void getRestdocsextSnippetFiles(List<File> list, File file) {
         if (file.isDirectory()) {
             for (File f : file.listFiles()) {
-                getPlaygroundFiles(list, f);
+                getRestdocsextSnippetFiles(list, f);
             }
         } else {
             if (RESTDOCSEXT_FILE_NAME.equals(file.getName())) {
