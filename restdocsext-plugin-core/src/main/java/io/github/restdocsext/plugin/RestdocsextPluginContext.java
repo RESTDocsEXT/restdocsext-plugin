@@ -24,11 +24,13 @@ public class RestdocsextPluginContext {
     private String uiSourceUrl
             = "https://raw.githubusercontent.com/RESTDocsEXT/restdocsext-ui/master/dist/restdocsext-ui.zip";
 
+    private String organizationName = "RESTDocsEXT UI";
+    private String organizationLink = "https://github.com/RESTDocsEXT/restdocsext-ui";
+
     private final PluginLogger logger;
     private final String baseUri;
     private final String homePage;
-    private final String organizationName;
-    private final String organizationLink; 
+
     private final File uiOutputDir;
     private final File snippetsDir;
 
