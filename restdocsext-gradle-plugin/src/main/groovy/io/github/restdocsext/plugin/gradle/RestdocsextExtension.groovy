@@ -5,6 +5,7 @@ import org.gradle.api.Project
 import org.gradle.api.tasks.Input 
 import org.gradle.api.tasks.InputDirectory
 import org.gradle.api.tasks.Nested
+import org.gradle.api.tasks.Optional
 import org.gradle.api.tasks.OutputDirectory
 
 /**
@@ -24,6 +25,22 @@ class RestdocsextExtension {
 
     @Input 
     String baseUri
+
+    @Input
+    @Optional
+    String homePage
+
+    @Input
+    @Optional
+    String organizationName
+
+    @Input
+    @Optional
+    String organizationLink
+
+    @Input
+    @Optional
+    String uiSourceUrl
 
     @Input 
     boolean noDefaultRepositories = false
@@ -80,6 +97,54 @@ class RestdocsextExtension {
 
     def setBaseUri(String baseUri) {
         this.baseUri = baseUri
+    }
+
+    def getHomePage() {
+        return this.homePage
+    }
+
+    def homePage(String homePage) {
+        this.homePage = homePage;
+    }
+
+    def setHomePage(String homePage) {
+        this.homePage = homePage;
+    }
+
+    def getOrganizationName() {
+        return this.organizationName;
+    }
+
+    def organizationNmae(String organizationName) {
+        this.organizationName = organizationName;
+    }
+
+    def setOrganizationName(String organizationName) {
+        this.organizationName = organizationName;
+    }
+
+    def getOrganizationLink() {
+        return this.organizationLink
+    }
+
+    def organizationLink(String organizationLink) {
+        this.organizationLink = organizationLink;
+    }
+
+    def setOrganizationLink(String organizationLink) {
+        this.organizationLink = organizationLink;
+    }
+
+    def getUiSourceUrl() {
+        return this.uiSourceUrl;
+    }
+
+    def uiSourceUrl(String uiSourceUrl) {
+        this.uiSourceUrl = uiSourceUrl;
+    }
+
+    def setUiSourceUrl(String uiSourceUrl) {
+        this.uiSourceUrl = uiSourceUrl;
     }
 }
 
