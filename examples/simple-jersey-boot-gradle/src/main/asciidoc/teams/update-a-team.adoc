@@ -1,0 +1,3 @@
+==== Update a Team
+
+Generally, the way to update a team, is to first retrieve the team representation from the server, update it on the client, then send back the updated representation.

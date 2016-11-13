@@ -16,6 +16,7 @@ import io.github.restdocsext.model.RestdocsextOperationCollection;
 import io.github.restdocsext.plugin.PluginLogger;
 import io.github.restdocsext.plugin.RestdocsextPluginContext;
 import io.github.restdocsext.plugin.RestdocsextPluginException;
+import org.apache.commons.io.FileUtils;
 
 /**
  * A task to generate the {@code restdocsext.conf.json} file. The result should be the
@@ -49,11 +50,21 @@ public class GenerateRestdocsextConfigTask implements RestdocsextPluginTask {
                 .organizationLink(context.getOrganizationLink())
                 .parent();
 
-        File assetsOutputDir = context.getAssetsConfigDir();
-        if (!assetsOutputDir.exists() || !assetsOutputDir.isDirectory()) {
-            throw new RestdocsextPluginException(assetsOutputDir
-                    + " does not exist or is not a directory");
+        File assetsConfigDir = context.getAssetsConfigDir();
+        if (assetsConfigDir.exists() && !assetsConfigDir.isDirectory()) {
+            throw new RestdocsextPluginException(assetsConfigDir + " is not a directory");
         }
+        if (!assetsConfigDir.exists()) {
+            try {
+                FileUtils.forceMkdir(assetsConfigDir);
+            } catch (IOException ex) {
+                if (assetsConfigDir.mkdir()) {
+                    throw new RestdocsextPluginException("Could not create directory "
+                            + assetsConfigDir.getAbsolutePath());
+                }
+            }
+        }
+
         File configFile = new File(context.getAssetsConfigDir(), RESTDOCSEXT_CONFIG_FILENAME);
         serializeConfig(config, configFile);
         context.getLogger().info("Finished generating " + configFile);

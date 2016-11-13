@@ -1,12 +1,4 @@
 
-ext {
-    jerseyVersion = '2.23'
-    // springBootVersion = '1.4.1.RELEASE'
-    springRestdocsVersion = '1.1.2.RELEASE'  
-    restdocsextJerseyVersion = '0.1.0'
-    snippetsDir = file('build/generated-snippets')
-    uiOutputDir = file('$buildDir/static/docs');
-}
 
 buildscript {
     ext {
@@ -19,14 +11,20 @@ buildscript {
         jcenter()
     }
     dependencies {
-       // classpath "io.github.restdocsext:restdocsext-gradle-plugin:$restdocsextPluginVersion"
-       // classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+       classpath "io.github.restdocsext:restdocsext-gradle-plugin:$restdocsextPluginVersion"
+       classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
     }
 }
 
 apply plugin: 'java'
-// apply plugin: 'spring-boot'
-// apply plugin: 'restdocsext-ui'
+apply plugin: 'spring-boot'
+apply plugin: 'restdocsext-ui'
+
+ext {
+    jerseyVersion = '2.23'
+    springRestdocsVersion = '1.1.2.RELEASE'
+    restdocsextJerseyVersion = '0.1.0'
+}
 
 group = 'com.example'
 
@@ -40,30 +38,30 @@ repositories {
 }
 
 dependencies {
-    compile "io.github.restdocsext:restdocsext-gradle-plugin:$restdocsextPluginVersion"
     compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
     compile "org.springframework.boot:spring-boot-starter-jersey:$springBootVersion"
     compile "org.glassfish.jersey.media:jersey-media-multipart:$jerseyVersion"
     compile "org.glassfish.jersey.media:jersey-media-json-jackson:$jerseyVersion"
     compile "org.glassfish.jersey.core:jersey-client:$jerseyVersion"
-    
+
+    testCompile "io.github.restdocsext:restdocsext-snippet:$restdocsextPluginVersion"
     testCompile "io.github.restdocsext:restdocsext-jersey:$restdocsextJerseyVersion"
     testCompile "org.springframework.restdocs:spring-restdocs-core:$springRestdocsVersion"
     testCompile "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
 }
 
 test {
-    outputs.dir snippetsDir
+    outputs.dir file("$buildDir/generated-snippets")
 }
 
-/*
 restdocsext {
-    uiOutputDir ext.uiOutputDir
-    snippetsDir ext.snippetsDir
+    baseUri 'http://localhost:8080/api'
+    uiOutputDir file("$buildDir/static/docs")
+    snippetsDir file("$buildDir/generated-snippets")
 
     asciidoctor {
+        outputDir file("$buildDir/generated-asciidoc")
         sourceDir file('src/main/asciidoc')
-        attributes snippets: '$buildDir/generated-snippets'
+        attributes snippets: file("$buildDir/generated-snippets").path
     }
 }
-*/

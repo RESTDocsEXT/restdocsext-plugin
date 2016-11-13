@@ -1,0 +1,17 @@
+
+== Delete a Team
+
+This enpoint allows for the deletion of a team.
+
+=== cURL Request
+
+include::{snippets}/delete-team/curl-request.adoc[]
+
+The team identifier should be present in the URL. If the team doesn't exist, a 404 response status will be returned.
+
+include::{snippets}/delete-team/path-parameters.adoc[]
+
+If the team is successfully deleted, a 200 response status will
+be returned.
+
+include::{snippets}/delete-team/http-response.adoc[]

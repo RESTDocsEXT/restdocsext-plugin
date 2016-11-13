@@ -1,0 +1,14 @@
+
+== Get a Collection of Teams
+
+This endpoint allows for the retrieval of a collection of teams.
+
+=== cURL Request
+
+include::{snippets}/get-all-teams/curl-request.adoc[]
+
+The request can be limited to a number of teams by passing in a request parameter in the query string.
+
+=== Request Parameters
+
+include::{snippets}/get-all-teams/request-parameters.adoc[]

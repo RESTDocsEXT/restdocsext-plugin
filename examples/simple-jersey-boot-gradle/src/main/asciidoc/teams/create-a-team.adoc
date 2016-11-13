@@ -1,0 +1,17 @@
+== Create a Team
+
+This endpoint allows for the creation of a new team.
+
+=== cURL Request
+
+include::{snippets}/create-a-team/curl-request.adoc[]
+
+=== Request Fields
+
+include::{snippets}/create-a-team/request-fields.adoc[]
+
+Note that when creating a new team, an id _MUST NOT_ be sent with the request. A null value _MAY_ be sent (but not necessary). In the event an id _is_ sent, a client error response status will be sent back.
+
+Upon sucessful creation, a `Location` header will be sent back, specifiying the newly created URI for the team.
+
+include::{snippets}/create-a-team/http-response.adoc[]
