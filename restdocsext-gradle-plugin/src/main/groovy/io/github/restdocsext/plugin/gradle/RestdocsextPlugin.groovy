@@ -20,17 +20,21 @@ class RestdocsextPlugin implements Plugin<Project> {
 
     def addRestdocsextTask(Project project) {
         project.afterEvaluate {
-            project.tasks.withType(RestdocsextUiTask).whenTaskAdded { task ->
-                def extension = project.extensions.findByName(RESTDOCSEXT)
-                task.conventionMapping.with {
-                    restdocsext = { extension }
-                }
+            configurePlugin(project)
+        }
+    }
+
+    def configurePlugin(Project project) {
+        project.tasks.withType(RestdocsextUiTask).whenTaskAdded { task ->
+            def extension = project.extensions.findByName(RESTDOCSEXT)
+            task.conventionMapping.with {
+                restdocsext = { extension }
             }
-            project.task(RESTDOCSEXT, 
-                type: RestdocsextUiTask, 
+        }
+        project.task(RESTDOCSEXT,
+                type: RestdocsextUiTask,
                 group: 'RESTDocsEXT',
                 description: 'Creates UI from Spring REST Docs snippets')
-        }
     }
 }
 
