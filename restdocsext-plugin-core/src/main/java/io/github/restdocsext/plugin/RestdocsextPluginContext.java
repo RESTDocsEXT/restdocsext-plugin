@@ -18,6 +18,12 @@ public class RestdocsextPluginContext {
      */
     public static final String ASSETS_SUBDIR = "assets/config";
 
+    /**
+     * The source URL for the UI disttribution
+     */
+    private String uiSourceUrl
+            = "https://raw.githubusercontent.com/RESTDocsEXT/restdocsext-ui/master/dist/restdocsext-ui.zip";
+
     private final PluginLogger logger;
     private final String baseUri;
     private final String homePage;
@@ -25,6 +31,7 @@ public class RestdocsextPluginContext {
     private final String organizationLink; 
     private final File uiOutputDir;
     private final File snippetsDir;
+
 
     private final File asciidoctorSourceDir;
     private final File asciidoctorOutputDir;
@@ -49,6 +56,7 @@ public class RestdocsextPluginContext {
         this.organizationName = builder.organizationName;
         this.organizationLink = builder.organizationLink;
         this.homePage = builder.homePage;
+        this.uiSourceUrl = builder.uiSourceUrl != null ? builder.uiSourceUrl : uiSourceUrl;
     }
 
     public static Builder builder() {
@@ -64,6 +72,7 @@ public class RestdocsextPluginContext {
         private String organizationLink;
         private File uiOutputDir;
         private File snippetsDir;
+        private String uiSourceUrl;
 
         private File asciidoctorSourceDir;
         private File asciidoctorOutputDir;
@@ -90,6 +99,11 @@ public class RestdocsextPluginContext {
 
         public Builder uiOutputDir(File uiOutputDir) {
             this.uiOutputDir = uiOutputDir;
+            return this;
+        }
+
+        public Builder uiSourceUrl(String url) {
+            this.uiSourceUrl = url;
             return this;
         }
 
@@ -146,6 +160,10 @@ public class RestdocsextPluginContext {
 
     public File getSnippetsDir() {
         return this.snippetsDir;
+    }
+
+    public String getUiSourceUrl() {
+        return this.uiSourceUrl;
     }
 
     public File getAsciidoctorOutputDir() {

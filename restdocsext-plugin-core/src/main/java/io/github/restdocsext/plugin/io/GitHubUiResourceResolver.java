@@ -57,7 +57,7 @@ class GitHubUiResourceResolver implements UiResourceResolver {
 
     private static File getFromSource(String source) {
         try {
-            File tempFile = File.createTempFile(UUID.randomUUID().toString(), ".tmp");
+            File tempFile = File.createTempFile("restdocsext-ui", ".tmp");
             FileUtils.copyURLToFile(new URL(source), tempFile, 10_000, 10_000);
             return tempFile;
         } catch (MalformedURLException ex) {
