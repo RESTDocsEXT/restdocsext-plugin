@@ -1,0 +1,9 @@
+== Sports Teams API
+
+=== Introduction
+
+The Sports Teams API is a generic API that has no use in the
+real world. It exposes an API for ficticious sports team data.
+Enjoy!
+
+

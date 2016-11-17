@@ -56,7 +56,8 @@ test {
 
 restdocsext {
     baseUri 'http://localhost:8080/api'
-    uiOutputDir file("$buildDir/static/docs")
+    homePage 'introduction'
+    uiOutputDir file("static/docs")
     snippetsDir file("$buildDir/generated-snippets")
 
     asciidoctor {
