@@ -23,7 +23,7 @@ apply plugin: 'restdocsext-ui'
 ext {
     jerseyVersion = '2.23'
     springRestdocsVersion = '1.1.2.RELEASE'
-    restdocsextJerseyVersion = '0.1.0'
+    restdocsextJerseyVersion = '0.1.1'
 }
 
 group = 'com.example'
