@@ -7,10 +7,10 @@ include::{snippets}/update-team-initial-get/http-response.adoc[]
 
 Once the client has does an updates with the representation, and wants to push the changes to the server, a PUT request should be made
 
-include::{snippets}/update-team/curl-request.adoc[]
+include::{snippets}/update-a-team/curl-request.adoc[]
 
 In both the GET and the PUT request, the team identifier should be present
 
-include::{snippets}/update-team/path-parameters.adoc[]
+include::{snippets}/update-a-team/path-parameters.adoc[]
 
 In the PUT request, the request field should match this URL identifier. A request with a different identifiers will lead to an error response. And a request using a nonexistant identifier will result in a 404 error response. It is for this reason, an initial GET for the representation should be made before making an update.

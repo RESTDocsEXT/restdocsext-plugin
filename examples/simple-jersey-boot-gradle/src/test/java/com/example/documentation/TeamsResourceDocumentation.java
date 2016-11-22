@@ -81,7 +81,7 @@ public class TeamsResourceDocumentation {
                 .register(document("get-all-teams",
                         preprocessRequest(this.removeUserAgent),
                         requestParameters(queryParameterDescriptors),
-                        restdocsextSnippet("Teams", "Get a Team")
+                        restdocsextSnippet("Teams", "Get all teams")
                                 .requestParameters(queryParameterDescriptors)))
                 .request()
                 .get();
@@ -149,11 +149,11 @@ public class TeamsResourceDocumentation {
                 .path("teams/{teamId}")
                 .resolveTemplate("teamId", "1")
                 .register(documentationConfiguration(this.restDocumentation))
-                .register(document("update-team",
+                .register(document("update-a-team",
                         preprocessRequest(this.removeUserAgent),
                         pathParameters(this.pathParameterDescriptors),
                         requestFields(this.entityFieldDescriptors),
-                        restdocsextSnippet("Teams", "Delete a Team")
+                        restdocsextSnippet("Teams", "Update a Team")
                                 .pathParameters(this.pathParameterDescriptors)
                                 .requestFields(this.entityFieldDescriptors)))
 
@@ -174,10 +174,10 @@ public class TeamsResourceDocumentation {
                 .path("teams/{teamId}")
                 .resolveTemplate("teamId", "5")
                 .register(documentationConfiguration(this.restDocumentation))
-                .register(document("delete-team",
+                .register(document("delete-a-team",
                         preprocessRequest(this.removeUserAgent),
                         pathParameters(this.pathParameterDescriptors),
-                        restdocsextSnippet("Teams", "Get a Team")
+                        restdocsextSnippet("Teams", "Delete a Team")
                                 .pathParameters(this.pathParameterDescriptors)))
                 .request()
                 .delete();
