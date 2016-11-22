@@ -34,6 +34,7 @@ class RestdocsextUiTask extends DefaultTask {
                 .snippetsDir(restdocsext.getSnippetsDir())
                 .homePage(restdocsext.getHomePage())
                 .uiSourceUrl(restdocsext.getUiSourceUrl())
+                .generalPages(restdocsext.getGeneralPages())
                 .organizationLink(restdocsext.getOrganizationLink())
                 .organizationName(restdocsext.getOrganizationName())
                 .asciidoctorSourceDir(asciidoctor.getSourceDir())

@@ -31,6 +31,7 @@ public class RestdocsextPluginContext {
     private final PluginLogger logger;
     private final String baseUri;
     private final String homePage;
+    private final List<String> generalPages;
 
     private final File uiOutputDir;
     private final File snippetsDir;
@@ -60,6 +61,7 @@ public class RestdocsextPluginContext {
         this.organizationLink = builder.organizationLink;
         this.homePage = builder.homePage;
         this.uiSourceUrl = builder.uiSourceUrl != null ? builder.uiSourceUrl : uiSourceUrl;
+        this.generalPages = builder.generalPages != null ? builder.generalPages : new ArrayList<String>();
     }
 
     public static Builder builder() {
@@ -76,6 +78,7 @@ public class RestdocsextPluginContext {
         private File uiOutputDir;
         private File snippetsDir;
         private String uiSourceUrl;
+        private List<String> generalPages;
 
         private File asciidoctorSourceDir;
         private File asciidoctorOutputDir;
@@ -107,6 +110,11 @@ public class RestdocsextPluginContext {
 
         public Builder uiSourceUrl(String url) {
             this.uiSourceUrl = url;
+            return this;
+        }
+
+        public Builder generalPages(List<String> generalPages) {
+            this.generalPages = generalPages;
             return this;
         }
 
@@ -169,6 +177,10 @@ public class RestdocsextPluginContext {
         return this.uiSourceUrl;
     }
 
+    public List<String> getGeneralPages() {
+        return this.generalPages;
+    }
+
     public File getAsciidoctorOutputDir() {
         return this.asciidoctorOutputDir;
     }
@@ -188,10 +200,6 @@ public class RestdocsextPluginContext {
     public Map<String, Object> getAsciidoctorAttrs() {
         return this.asciidoctorAttrs;
     }
-
-    public List<String> getDocPages() {
-        return this.docPages;
-    }
     
     public String getOrganizationName() {
         return this.organizationName; 
@@ -199,9 +207,5 @@ public class RestdocsextPluginContext {
     
     public String getOrganizationLink() {
         return this.organizationLink;
-    }
-
-    public void addDocPage(String docPage) {
-        this.docPages.add(docPage);
     }
 }

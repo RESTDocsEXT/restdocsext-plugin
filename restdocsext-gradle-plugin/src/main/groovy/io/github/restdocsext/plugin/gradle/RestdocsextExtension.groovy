@@ -42,6 +42,10 @@ class RestdocsextExtension {
     @Optional
     String uiSourceUrl
 
+    @Input
+    @Optional
+    List<String> generalPages
+
     @Input 
     boolean noDefaultRepositories = false
 	
@@ -145,6 +149,18 @@ class RestdocsextExtension {
 
     def setUiSourceUrl(String uiSourceUrl) {
         this.uiSourceUrl = uiSourceUrl;
+    }
+
+    def getGeneralPages() {
+        return this.generalPages;
+    }
+
+    def setGeneralPages(List<String> generalPages) {
+        this.generalPages = generalPages;
+    }
+
+    def generalPages(List<String> generalPages) {
+        this.generalPages = generalPages;
     }
 }
 

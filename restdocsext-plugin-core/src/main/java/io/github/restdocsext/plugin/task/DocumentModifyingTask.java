@@ -52,9 +52,6 @@ public class DocumentModifyingTask implements RestdocsextPluginTask {
             String pathWithoutBase = getPathWithoutBase(context.getAsciidoctorOutputDir(), file);
             File docFile = new File(context.getAssetsDocsDir(), pathWithoutBase);
             FileUtils.writeStringToFile(docFile, document.body().html(), "utf-8");
-            // add doc page to list of pages. These pages will be put into the configuration file
-            // from the JSON generator task.
-            context.addDocPage(file.getName());
         } catch (IOException ex) {
             context.getLogger().error(ex.getMessage());
             throw new RestdocsextPluginException("failed to modify asciidoctor generated documents.", ex);

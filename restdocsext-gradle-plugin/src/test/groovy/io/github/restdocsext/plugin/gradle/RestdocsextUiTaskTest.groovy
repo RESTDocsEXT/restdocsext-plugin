@@ -37,7 +37,8 @@ class RestdocsextUiTaskTest extends Specification {
             extension.baseUri 'http://localhost:8080'
             extension.snippetsDir new File('snippets')
             extension.uiOutputDir new File('uiOutput')
-            def asciidoctor = new AsciidoctorConfig()
+            extension.generalPages = ['introduction']
+        def asciidoctor = new AsciidoctorConfig()
             asciidoctor.outputDir new File('output')
             asciidoctor.sourceDir new File('source')
             asciidoctor.attributes 'snippets': 'snippets.dir'
@@ -57,6 +58,7 @@ class RestdocsextUiTaskTest extends Specification {
             context.asciidoctorAttrs.containsValue('snippets.dir')
             context.uiOutputDir.path == 'uiOutput'
             context.snippetsDir.path == 'snippets'
+            context.generalPages.contains('introduction')
             context.asciidoctorOutputDir.path == 'output'
             context.asciidoctorSourceDir.path == 'source'
     }

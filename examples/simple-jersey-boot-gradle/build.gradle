@@ -57,12 +57,17 @@ test {
 restdocsext {
     baseUri 'http://localhost:8080/api'
     homePage 'introduction'
-    uiOutputDir file("static/docs")
+    uiOutputDir file("src/main/resources/static/docs")
     snippetsDir file("$buildDir/generated-snippets")
+    generalPages = ['introduction']
 
     asciidoctor {
         outputDir file("$buildDir/generated-asciidoc")
         sourceDir file('src/main/asciidoc')
         attributes snippets: file("$buildDir/generated-snippets").path
     }
+}
+
+jar {
+    dependsOn restdocsext
 }

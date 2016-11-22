@@ -4,10 +4,7 @@ package io.github.restdocsext.plugin.task;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.restdocsext.model.RestdocsextConfig;
@@ -44,7 +41,7 @@ public class GenerateRestdocsextConfigTask implements RestdocsextPluginTask {
         RestdocsextConfig config = generate(context.getSnippetsDir(),context.getLogger())
                 .setBaseUri(context.getBaseUri())
                 .ui()
-                .setPages(context.getDocPages())
+                .setPages(context.getGeneralPages())
                 .homePage(context.getHomePage())
                 .organizationName(context.getOrganizationName())
                 .organizationLink(context.getOrganizationLink())
