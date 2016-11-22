@@ -2,12 +2,14 @@ package io.github.restdocsext.plugin.task;
 
 import io.github.restdocsext.plugin.JulPluginLogger;
 import io.github.restdocsext.plugin.RestdocsextPluginContext;
+import org.apache.commons.io.FileUtils;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
 import java.io.File;
+import java.util.Iterator;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.is;
@@ -44,9 +46,13 @@ public class DocumentModifyingTaskTest {
     public void should_copy_files_from_outputDir_recursively() {
         new DocumentModifyingTask().handle(context);
 
-        assertThat(new File(assetsDocsDir, "test1.html").exists(), is(true));
-        assertThat(new File(assetsDocsDir, "sub/sub.html").exists(), is(true));
-        assertThat(new File(assetsDocsDir, "sub1/sub1.html").exists(), is(true));
-        assertThat(new File(assetsDocsDir, "sub1/sub1/sub1-sub1.html").exists(), is(true));
+        assertFileExists("test1.html");
+        assertFileExists("sub/sub.html");
+        assertFileExists("sub1/sub1.html");
+        assertFileExists("sub1/sub1/sub1-sub1.html");
+    }
+
+    private void assertFileExists(String file) {
+        assertThat(new File(assetsDocsDir, file).exists(), is(true));
     }
 }

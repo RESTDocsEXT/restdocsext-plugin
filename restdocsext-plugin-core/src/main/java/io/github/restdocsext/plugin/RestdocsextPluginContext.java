@@ -2,10 +2,7 @@
 package io.github.restdocsext.plugin;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 /**
  *
@@ -41,8 +38,6 @@ public class RestdocsextPluginContext {
     private final File asciidoctorOutputDir;
     private final Map<String, Object> asciidoctorAttrs;
 
-    private final List<String> docPages = new ArrayList<>();
-
     private RestdocsextPluginContext(Builder builder) {
         Objects.requireNonNull(builder.logger, "logger must not be null");
         Objects.requireNonNull(builder.baseUri, "baseUri must not be null");
@@ -54,12 +49,12 @@ public class RestdocsextPluginContext {
         this.baseUri = builder.baseUri;
         this.snippetsDir = builder.snippetsDir;
         this.uiOutputDir = builder.uiOutputDir;
+        this.homePage = builder.homePage;
         this.asciidoctorOutputDir = builder.asciidoctorOutputDir;
         this.asciidoctorSourceDir = builder.asciidoctorSourceDir;
-        this.asciidoctorAttrs = builder.asciidoctorAttrs;
-        this.organizationName = builder.organizationName;
-        this.organizationLink = builder.organizationLink;
-        this.homePage = builder.homePage;
+        this.asciidoctorAttrs = builder.asciidoctorAttrs != null ? builder.asciidoctorAttrs : new HashMap<String, Object>();
+        this.organizationName = builder.organizationName != null ? builder.organizationName : this.organizationName;
+        this.organizationLink = builder.organizationLink != null ? builder.organizationLink : this.organizationLink;
         this.uiSourceUrl = builder.uiSourceUrl != null ? builder.uiSourceUrl : uiSourceUrl;
         this.generalPages = builder.generalPages != null ? builder.generalPages : new ArrayList<String>();
     }
