@@ -6,3 +6,7 @@ dependencies {
     compile 'commons-io:commons-io'
     optional 'junit:junit'
 }
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.1'
+}
