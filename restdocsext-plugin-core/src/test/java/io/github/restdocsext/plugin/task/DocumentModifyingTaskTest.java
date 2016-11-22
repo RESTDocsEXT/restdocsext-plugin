@@ -2,14 +2,12 @@ package io.github.restdocsext.plugin.task;
 
 import io.github.restdocsext.plugin.JulPluginLogger;
 import io.github.restdocsext.plugin.RestdocsextPluginContext;
-import org.apache.commons.io.FileUtils;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
 import java.io.File;
-import java.util.Iterator;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.is;

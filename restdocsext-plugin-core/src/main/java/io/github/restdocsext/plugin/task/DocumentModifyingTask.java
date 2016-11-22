@@ -19,7 +19,7 @@ import io.github.restdocsext.plugin.document.DocumentModifiers;
 /**
  * Task to modify the JSoup {@link Document}s.
  *
- * @author PaulSamsotha
+ * @author Paul Samsotha
  */
 public class DocumentModifyingTask implements RestdocsextPluginTask {
 
@@ -43,6 +43,9 @@ public class DocumentModifyingTask implements RestdocsextPluginTask {
         context.getLogger().info("Finished modifying Asciidoc document(s)");
     }
 
+    /*
+     * Modified a document and saves it to the assets/docs directory.
+     */
     private void processFile(File file, Set<DocumentModifier> modifiers, RestdocsextPluginContext context) {
         try {
             Document document = Jsoup.parse(file, "utf-8");
@@ -58,12 +61,15 @@ public class DocumentModifyingTask implements RestdocsextPluginTask {
         }
     }
 
+    /*
+     * Takes the absolute path of a file and strips the base asciidoctor output path.
+     */
     private static String getPathWithoutBase(File asciidoctorOutputDir, File fileToSave) {
         String basePath = asciidoctorOutputDir.getAbsolutePath();
         // take care of asciidoctor creating html5 directory
         basePath = basePath.endsWith("/") ? basePath + "html5" : basePath + "/html5";
-        String fullPathPath = fileToSave.getAbsolutePath();
-        String baseRemoved = fullPathPath.substring(basePath.length());
+        String fullPath = fileToSave.getAbsolutePath();
+        String baseRemoved = fullPath.substring(basePath.length());
         return baseRemoved.startsWith("/") ? baseRemoved.substring(1) : baseRemoved;
     }
 }
