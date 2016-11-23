@@ -34,7 +34,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import io.github.restdocsext.model.RestdocsextOperation;
 
 /**
- * Spring REST Docs snippet for generating  snippets that will be used for the configuration
+ * Spring REST Docs snippet for generating snippets that will be used for the configuration
  * of the RESTDocsEXT UI. All of the snippets will be compiled into one file using a build
  * system plugin.
  * 
@@ -60,7 +60,8 @@ import io.github.restdocsext.model.RestdocsextOperation;
  * 
  * document("get-all-cats", 
  *         requestHeaders(headerDescriptors), 
- *         restdocsextSnippet("Cats", "Get a Cat").requestHeaders(headerDescriptors))
+ *         restdocsextSnippet("Cats", "Get a Cat")
+ *                  .requestHeaders(headerDescriptors))
  * </pre>
  * 
  * Only applicable descriptors need to be set.
@@ -171,8 +172,8 @@ public class RestdocsextSnippet implements Snippet {
         if (attributes != null) {
             this.attributes.putAll(attributes);
         }
-        Assert.notNull(collectionName, "Did you forget to specify a collection name via the"
-                + " PlaygroundSnippet.ATTRIBUTE_COLLECTION_NAME attribute?");
+        Assert.notNull(collectionName, "The collection name should not be null.");
+        Assert.notNull(operationName, "The operation name should not be null.");
         this.collectionName = collectionName;
         this.operationName = operationName;
     }
@@ -198,7 +199,7 @@ public class RestdocsextSnippet implements Snippet {
      * Generate the {@link RestdocsextOperation} from the {@link Operation}.
      * 
      * @param operation the operation
-     * @return the Playground API model
+     * @return the Restdocsext operation model
      */
     private RestdocsextOperation getRestdocsextOperation(Operation operation) {
         OperationRequest request = operation.getRequest();

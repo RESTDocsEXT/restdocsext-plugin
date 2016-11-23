@@ -16,11 +16,11 @@ public class RestdocsextDocumentation {
 
     /**
      * Factory method to create a {@link RestdocsextSnippet}. A collection name is required for 
-     * creation. This collection name will separate different collections in the Playground UI.
+     * creation. This collection name will separate different collections in the RESTDocsEXT UI.
      * 
      * @param collectionName the name of the collection
      * @param operationName the short name of the operation (e.g. "Get a dog")
-     * @return the playground snippet
+     * @return the snippet
      */
     public static RestdocsextSnippet restdocsextSnippet(String collectionName, String operationName) {
         return new RestdocsextSnippet(collectionName, operationName);
@@ -28,14 +28,14 @@ public class RestdocsextDocumentation {
 
     /**
      * Factory method to create a {@link RestdocsextSnippet}. A collection name is required for 
-     * creation. This collection name will separate different collections in the Playground UI.
+     * creation. This collection name will separate different collections in the RESTDocsEXT UI.
      * 
      * Along with the collection name, this factory overload allows for specifying extra
      * attributes.
      * 
      * @param collectionName the name of the collection
      * @param operationName the short name of the operation (e.g. "Get a dog")
-     * @return the playground snippet
+     * @return the snippet
      * @param attributes extra attributes.
      */
     public static RestdocsextSnippet restdocsextSnippet(String collectionName, String operationName,
